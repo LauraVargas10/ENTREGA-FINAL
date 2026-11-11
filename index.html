@@ -59,7 +59,11 @@
 		.entry.is-active h2 { animation-delay:.1s; }
 		.entry.is-active p { animation-delay:.16s; }
 		.entry.is-active .tag { animation-delay:.24s; }
+		.entry.is-active h2 { animation:heading-enter-next .65s cubic-bezier(.2,.7,.2,1) .08s both; }
+		.entry.is-active.from-previous h2 { animation-name:heading-enter-previous; }
 		@keyframes day-enter { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+		@keyframes heading-enter-next { from { opacity:0; transform:translateX(26px); filter:blur(3px); } to { opacity:1; transform:translateX(0); filter:blur(0); } }
+		@keyframes heading-enter-previous { from { opacity:0; transform:translateX(-26px); filter:blur(3px); } to { opacity:1; transform:translateX(0); filter:blur(0); } }
 		.pager { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:4px 0 0 72px; }
 		.pager button { min-height:40px; padding:0 13px; border:1px solid var(--line); background:#fffefa; color:var(--green); font-size:12px; font-weight:700; cursor:pointer; }
 		.pager button:hover:not(:disabled) { border-color:var(--green); }
@@ -195,9 +199,13 @@
 		let currentDay = 0;
 
 		function showDay(index, updateUrl = false) {
-			currentDay = Math.max(0, Math.min(index, entries.length - 1));
+			const nextDay = Math.max(0, Math.min(index, entries.length - 1));
+			const isPrevious = nextDay < currentDay;
+			currentDay = nextDay;
 			entries.forEach((entry, entryIndex) => {
-				entry.classList.toggle("is-active", entryIndex === currentDay);
+				const isActive = entryIndex === currentDay;
+				entry.classList.toggle("from-previous", isActive && isPrevious);
+				entry.classList.toggle("is-active", isActive);
 				if (entryIndex === currentDay) entry.setAttribute("aria-current", "true");
 				else entry.removeAttribute("aria-current");
 			});
