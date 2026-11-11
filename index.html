@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Bitácora personal del III Encuentro de Jóvenes en el Centro Nacional de las Artes." />
+	<title>Bitácora | III Encuentro de Jóvenes</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+	<style>
+		:root { --ink:#1b2926; --muted:#64716c; --paper:#f5f4ee; --green:#245c49; --red:#b94d39; --yellow:#e8c86b; --line:#deddd3; font-family:"DM Sans",sans-serif; color:var(--ink); background:var(--paper); scroll-behavior:smooth; }
+		* { box-sizing:border-box; }
+		body { margin:0; min-width:320px; }
+		a { color:inherit; }
+		.shell { width:min(1080px,calc(100% - 44px)); margin:0 auto; }
+		.topbar { height:68px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
+		.brand { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:700; text-decoration:none; }
+		.brand-mark { width:32px; height:32px; display:grid; place-items:center; background:var(--red); color:#fff; font:700 13px "Playfair Display",serif; }
+		nav { display:flex; gap:22px; font-size:12px; }
+		nav a { text-decoration:none; } nav a:hover { color:var(--red); }
+		.license { border-bottom:1px solid var(--red); padding-bottom:3px; }
+		.cover { min-height:365px; position:relative; display:flex; align-items:end; overflow:hidden; background:#24342d; color:#fff; }
+		.cover img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 55%; }
+		.cover:after { position:absolute; inset:0; content:""; background:linear-gradient(90deg,#16241fe8,#16241f75 55%,#16241f20); }
+		.cover-content { position:relative; z-index:1; width:min(1080px,calc(100% - 44px)); margin:0 auto; padding:45px 0; }
+		.eyebrow,.entry-label { color:var(--red); font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
+		.cover .eyebrow { color:var(--yellow); }
+		h1 { margin:10px 0; font:600 clamp(40px,6vw,66px)/1.04 "Playfair Display",Georgia,serif; }
+		.cover p:last-child { margin:12px 0 0; color:#f2f1e9; font-size:14px; }
+		.caption { position:absolute; z-index:2; right:14px; bottom:10px; color:white; font-size:9px; }
+		.intro { display:grid; grid-template-columns:1fr 250px; gap:50px; padding:45px 0; border-bottom:1px solid var(--line); }
+		.intro .eyebrow { margin:0 0 10px; }
+		h2 { font:500 29px/1.2 "Playfair Display",Georgia,serif; }
+		.intro h2 { margin:0 0 15px; }
+		.intro p:not(.eyebrow),.entry p { color:#43504b; font-size:14px; line-height:1.85; }
+		.intro p:not(.eyebrow) { margin:0 0 12px; }
+		.aside { align-self:center; padding-left:19px; border-left:2px solid var(--yellow); color:var(--muted); font-size:12px; line-height:1.7; }
+		.aside strong { display:block; margin-bottom:7px; color:var(--ink); font:600 19px "Playfair Display",Georgia,serif; }
+		.journal { display:grid; grid-template-columns:175px minmax(0,1fr); gap:48px; padding:48px 0 68px; }
+		.day-nav { position:sticky; top:20px; align-self:start; }
+		.day-nav p { color:var(--muted); font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+		.day-nav a { display:block; padding:9px 0; border-top:1px solid var(--line); font-size:11px; text-decoration:none; }
+		.day-nav span { display:inline-block; width:34px; color:var(--red); font-weight:700; }
+		.entry { display:grid; grid-template-columns:54px minmax(0,1fr); gap:18px; padding-bottom:36px; margin-bottom:36px; border-bottom:1px solid var(--line); scroll-margin-top:20px; }
+		.entry:last-child { border:0; }
+		.number { width:48px; height:48px; display:grid; place-items:center; border:1px solid var(--line); border-radius:50%; color:var(--red); font:600 19px "Playfair Display",serif; }
+		.entry-label { margin:0 0 10px; }
+		.entry h2 { margin:0 0 14px; }
+		.entry p { margin:0 0 13px; }
+		.entry .thought { padding-left:15px; border-left:2px solid var(--yellow); color:#34443d; }
+		.tag { display:inline-block; margin-top:5px; padding:6px 9px; background:#e9eee4; color:var(--green); font-size:10px; font-weight:700; }
+		footer { padding:20px 0 26px; border-top:1px solid var(--line); color:var(--muted); font-size:11px; line-height:1.7; }
+		footer .shell { display:flex; justify-content:space-between; gap:18px; }
+		footer p { max-width:750px; margin:0; }
+		footer a { color:var(--green); font-weight:700; }
+		@media(max-width:700px) {
+			.shell,.cover-content { width:calc(100% - 30px); }
+			.topbar { height:60px; } nav { gap:14px; } nav a:first-child { display:none; }
+			.cover { min-height:330px; } .cover:after { background:linear-gradient(0deg,#16241fdc,#16241f22); }
+			.intro { grid-template-columns:1fr; gap:18px; padding:34px 0; }
+			.journal { grid-template-columns:1fr; gap:18px; padding:34px 0 48px; }
+			.day-nav { position:static; display:flex; flex-wrap:wrap; gap:6px; }
+			.day-nav p { width:100%; margin-bottom:4px; }
+			.day-nav a { padding:7px 9px; border:1px solid var(--line); background:#fffefa; }
+			.day-nav span { width:auto; margin-right:4px; }
+			.entry { grid-template-columns:40px minmax(0,1fr); gap:12px; }
+			.number { width:38px; height:38px; font-size:15px; }
+			.entry h2 { font-size:25px; } .entry p,.intro p:not(.eyebrow) { font-size:13px; }
+			footer .shell { flex-direction:column; }
+		}
+		@media(prefers-reduced-motion:reduce) { *,*:before,*:after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; } }
+	</style>
+</head>
+<body>
+	<header class="topbar shell">
+		<a class="brand" href="#inicio"><span class="brand-mark">III</span> TRABAJO FINAL MULTIMEDIA</a>
+		<nav aria-label="Navegación principal"><a href="#bitacora">La bitácora</a><a class="license" href="licencia/LICENSE.txt">Licencia</a></nav>
+	</header>
+	<section class="cover" id="inicio" aria-labelledby="page-title">
+		<img src="https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=2000&q=85" alt="Escenario teatral iluminado, imagen de archivo" />
+		<div class="cover-content animate__animated animate__fadeInUp">
+			<p class="eyebrow">Bitácora personal · Centro Nacional de las Artes</p>
+			<h1 id="page-title">III Encuentro<br />de Jóvenes</h1>
+			<p>Cinco días de arte, preguntas y encuentros.</p>
+		</div>
+		<span class="caption">Imagen de archivo; no corresponde necesariamente al Encuentro.</span>
+	</section>
+	<section class="intro shell" aria-labelledby="intro-title">
+		<div>
+			<p class="eyebrow">El comienzo</p>
+			<h2 id="intro-title">Un sueño que se volvió encuentro</h2>
+			<p>Quiero recopilar lo que fue el tercer Encuentro de Jóvenes en el Centro Nacional de las Artes y tomar este espacio como bitácora de esos días.</p>
+			<p>El viaje comenzó cuando me seleccionaron como consejera del Encuentro. Para mi yo chiquita fue un sueño hecho realidad ser parte de la agenda programática. ¡Fui curadora!</p>
+		</div>
+		<aside class="aside"><strong>Una memoria en cinco días</strong>De los espacios públicos para crear a las historias que nos transforman cuando alguien se toma el tiempo de escuchar.</aside>
+	</section>
+	<main class="journal shell" id="bitacora">
+		<nav class="day-nav" aria-label="Entradas por día">
+			<p>Ir a cada día</p>
+			<a href="#dia-1"><span>01</span>Primeras preguntas</a>
+			<a href="#dia-2"><span>02</span>Hacer comunidad</a>
+			<a href="#dia-3"><span>03</span>Otros territorios</a>
+			<a href="#dia-4"><span>04</span>Voces del sur</a>
+			<a href="#dia-5"><span>05</span>Escuchar historias</a>
+		</nav>
+		<div class="entries">
+			<article class="entry" id="dia-1">
+				<div class="number" aria-hidden="true">01</div><div>
+					<p class="entry-label">Día uno · Llegar y mirar</p><h2>¿Quiénes pueden habitar estos espacios?</h2>
+					<p>Fue mucho corre corre, pero conocí procesos artísticos en un colegio público de Bogotá. Estaban impresionados con las instalaciones del Delia, igual que yo cuando me enseñaron dónde sería nuestra sede de trabajo.</p>
+					<p>Pensé mucho en mi yo chiquita, cuando iba a la Casa de la Cultura de mi municipio.</p>
+					<p class="thought">Me quedé pensando en lo público y en cómo hacer que ser artista en Colombia no sea un privilegio de unos pocos. Que contar con espacios dignos para crear, ensayar y trabajar no dependa de las oportunidades que cada quien tenga. ¿Cómo podemos, desde la política pública, abrir más espacios para encontrarnos, compartir y hacer arte? ¿Cómo lograr que habitar escenarios tan importantes para la cultura colombiana deje de ser un sueño y se convierta en una posibilidad real para más artistas?</p>
+					<p>Luego tuvimos la inauguración de artes gráficas. Fue complejo porque desde el Ministerio de Cultura se nos pidió bajar una de las obras de la exposición. ¿Qué es la cultura si no podemos construir relatos que nos incomoden e interpelen?</p>
+					<p>Después vimos una obra para la franja infantil. Fue hermosa: transcurría en un hospital psiquiátrico y uno de los personajes se llamaba Enriqueta. Olvidaba el nombre de su esposa y luego la dormían.</p>
+					<p>Me acordé de mi papá. Se llamaba Enrique y, después de varios accidentes cerebrovasculares, perdió la memoria; a veces no recordaba el nombre de mi mamá. Para mí fue una señal del más allá de que estaba haciendo las cosas bien. Ojalá haya más mensajes del más allá.</p>
+					<span class="tag">Arte público · Memoria · Cuidado</span>
+				</div>
+			</article>
+			<article class="entry" id="dia-2">
+				<div class="number" aria-hidden="true">02</div><div>
+					<p class="entry-label">Día dos · El público también se construye</p><h2>Encontrarnos para hacer comunidad</h2>
+					<p>Este día fue peculiar. Llegué en la tarde por el trabajo, pero fue hermoso ver cómo un colectivo de danza de Bucaramanga se presentó en el Delia. Hacen danza contemporánea e improvisación de contacto, un lenguaje que vemos en corporal.</p>
+					<p>No hubo mucho público, y eso me dejó pensando en la divulgación de los encuentros culturales. En Bogotá necesitamos crear comunidad y escuela de público para las artes: que estos espacios se conozcan, se habiten y se sientan propios.</p>
+					<span class="tag">Danza · Público · Comunidad</span>
+				</div>
+			</article>
+			<article class="entry" id="dia-3">
+				<div class="number" aria-hidden="true">03</div><div>
+					<p class="entry-label">Día tres · Escuchar otros territorios</p><h2>El país también cabe en una conversación</h2>
+					<p>Este día fue hermoso. Tuvimos un encuentro entre artistas, asesores y consejeres del Encuentro. Fue un espacio muy bonito porque nos permitió conocer realidades culturales de nuestro país más allá de Bogotá y escuchar de primera mano los desafíos de quienes hacen arte en otros territorios.</p>
+					<p>Nos hablaron de Pasto, donde no existe una oferta de formación profesional en artes escénicas, y de Tumaco, donde hay numerosas sabedoras y sabedores cuyos conocimientos y trayectorias no cuentan con una certificación formal. Eso les impide acceder a convocatorias, pues no tienen cómo acreditar sus saberes y experiencia.</p>
+					<p>Más tarde vimos la obra de Pasto en el Teatro Colón. Los artistas estaban muy emocionados de presentarse en un escenario tan importante y de haber llegado hasta allí, a pesar de las barreras que enfrentan quienes hacen arte en Nariño. Fue muy bonito ver lo que significaba para ellos ocupar ese espacio.</p>
+					<span class="tag">Pasto · Tumaco · Nariño</span>
+				</div>
+			</article>
+			<article class="entry" id="dia-4">
+				<div class="number" aria-hidden="true">04</div><div>
+					<p class="entry-label">Día cuatro · Sonidos que nos acercan</p><h2>La radio también es un lugar de encuentro</h2>
+					<p>Tuvimos un día de radio comunitaria con Ondanza, un colectivo que hace radio desde los sonidos del sur.</p>
+					<p>En la noche estuvo Chureo Callejero en el Teatro Colón. Fue muy chévere tenerlos ese día.</p>
+					<span class="tag">Ondanza · Radio comunitaria · Chureo Callejero</span>
+				</div>
+			</article>
+			<article class="entry" id="dia-5">
+				<div class="number" aria-hidden="true">05</div><div>
+					<p class="entry-label">Día cinco · Cerrar escuchando</p><h2>El grito que encontró palabras</h2>
+					<p>Ya estábamos llegando al cierre del Encuentro, pero me enfermé; creo que fue por el estrés. Aun así, cerramos con danza y narración oral.</p>
+					<p>Una de las obras fue <em>El grito de la Mona</em>. Nos hizo pensar en cómo la educación puede transformar vidas y en que, a veces, uno de los actos más transformadores de enseñar es simplemente escuchar con atención las historias de los estudiantes.</p>
+					<p>Nos contaron la historia de un chico que pasaba mucho tiempo solo porque sus papás trabajaban todo el día. Casi nunca hacía las tareas que le dejaba su profesor, hasta que un día decidió escribirle una carta a la niña que le gustaba, la Mona. Por primera vez dejó de gritar y encontró en las palabras una forma de expresar lo que sentía.</p>
+					<p class="thought">Y todo porque un profesor, de esos locos soñadores que creen que la educación puede cambiar el mundo, se tomó el tiempo de escucharlo y descubrió que, detrás de sus gritos, había una historia que merecía ser contada.</p>
+					<span class="tag">Educación · Escucha · Narración oral</span>
+				</div>
+			</article>
+		</div>
+	</main>
+	<footer><div class="shell"><p>Bitácora del III Encuentro de Jóvenes. Animaciones con Animate.css, de Daniel Eden y colaboradores. Se incluye el aviso de copyright y la licencia para consulta.</p><a href="licencia/LICENSE.txt">Leer la licencia</a></div></footer>
+</body>
+</html>
