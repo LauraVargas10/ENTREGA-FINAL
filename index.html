@@ -7,17 +7,17 @@
 	<title>Bitácora | III Encuentro de Jóvenes</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 	<style>
-		:root { --ink:#1b2926; --muted:#64716c; --paper:#f5f4ee; --green:#245c49; --red:#b94d39; --yellow:#e8c86b; --line:#deddd3; font-family:"DM Sans",sans-serif; color:var(--ink); background:var(--paper); scroll-behavior:smooth; }
+		:root { --ink:#1b2926; --muted:#64716c; --paper:#f5f4ee; --green:#245c49; --red:#b94d39; --yellow:#e8c86b; --line:#deddd3; font-family:"Karla",sans-serif; color:var(--ink); background:var(--paper); scroll-behavior:smooth; }
 		* { box-sizing:border-box; }
 		body { margin:0; min-width:320px; }
 		a { color:inherit; }
 		.shell { width:min(1080px,calc(100% - 44px)); margin:0 auto; }
 		.topbar { height:68px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
 		.brand { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:700; text-decoration:none; }
-		.brand-mark { width:32px; height:32px; display:grid; place-items:center; background:var(--red); color:#fff; font:700 13px "Playfair Display",serif; }
+		.brand-mark { width:32px; height:32px; display:grid; place-items:center; background:var(--red); color:#fff; font:700 13px "Newsreader",serif; }
 		nav { display:flex; gap:22px; font-size:12px; }
 		nav a { text-decoration:none; } nav a:hover { color:var(--red); }
 		.license { border-bottom:1px solid var(--red); padding-bottom:3px; }
@@ -27,17 +27,22 @@
 		.cover-content { position:relative; z-index:1; width:min(1080px,calc(100% - 44px)); margin:0 auto; padding:45px 0; }
 		.eyebrow,.entry-label { color:var(--red); font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
 		.cover .eyebrow { color:var(--yellow); }
-		h1 { margin:10px 0; font:600 clamp(40px,6vw,66px)/1.04 "Playfair Display",Georgia,serif; }
+		h1 { margin:10px 0; font:600 clamp(40px,6vw,66px)/1.04 "Newsreader",Georgia,serif; }
+		#page-title { animation:title-shift 6s ease-in-out infinite; }
+		@keyframes title-shift { 0%,100% { color:#fff6e2; text-shadow:0 0 0 #e8c86b00; } 50% { color:#f0ca62; text-shadow:0 0 18px #e8c86b7a; } }
+		@keyframes text-reveal { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
 		.cover p:last-child { margin:12px 0 0; color:#f2f1e9; font-size:14px; }
 		.caption { position:absolute; z-index:2; right:14px; bottom:10px; color:white; font-size:9px; }
 		.intro { display:grid; grid-template-columns:1fr 250px; gap:50px; padding:45px 0; border-bottom:1px solid var(--line); }
 		.intro .eyebrow { margin:0 0 10px; }
-		h2 { font:500 29px/1.2 "Playfair Display",Georgia,serif; }
+		h2 { font:500 29px/1.2 "Newsreader",Georgia,serif; }
 		.intro h2 { margin:0 0 15px; }
 		.intro p:not(.eyebrow),.entry p { color:#43504b; font-size:14px; line-height:1.85; }
 		.intro p:not(.eyebrow) { margin:0 0 12px; }
+		.intro > div { animation:text-reveal .65s .08s both; }
 		.aside { align-self:center; padding-left:19px; border-left:2px solid var(--yellow); color:var(--muted); font-size:12px; line-height:1.7; }
-		.aside strong { display:block; margin-bottom:7px; color:var(--ink); font:600 19px "Playfair Display",Georgia,serif; }
+		.aside strong { display:block; margin-bottom:7px; color:var(--ink); font:600 19px "Newsreader",Georgia,serif; }
+		.intro > .aside { animation:text-reveal .65s .2s both; }
 		.journal { display:grid; grid-template-columns:175px minmax(0,1fr); gap:48px; padding:48px 0 68px; }
 		.day-nav { display:block; position:sticky; top:20px; align-self:start; }
 		.day-nav p { color:var(--muted); font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
@@ -46,6 +51,14 @@
 		.day-nav a[aria-current="page"] { color:var(--red); font-weight:700; }
 		.entry:not(.is-active) { display:none; }
 		.entry.is-active { display:grid; animation:day-enter .35s ease both; }
+		.entry.is-active .entry-label,
+		.entry.is-active h2,
+		.entry.is-active p,
+		.entry.is-active .tag { animation:text-reveal .55s both; }
+		.entry.is-active .entry-label { animation-delay:.04s; }
+		.entry.is-active h2 { animation-delay:.1s; }
+		.entry.is-active p { animation-delay:.16s; }
+		.entry.is-active .tag { animation-delay:.24s; }
 		@keyframes day-enter { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 		.pager { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:4px 0 0 72px; }
 		.pager button { min-height:40px; padding:0 13px; border:1px solid var(--line); background:#fffefa; color:var(--green); font-size:12px; font-weight:700; cursor:pointer; }
@@ -55,7 +68,7 @@
 		.pager button:focus-visible, .day-nav a:focus-visible { outline:3px solid #78ac91; outline-offset:3px; }
 		.entry { display:grid; grid-template-columns:54px minmax(0,1fr); gap:18px; padding-bottom:36px; margin-bottom:36px; border-bottom:1px solid var(--line); scroll-margin-top:20px; }
 		.entry:last-child { border:0; }
-		.number { width:48px; height:48px; display:grid; place-items:center; border:1px solid var(--line); border-radius:50%; color:var(--red); font:600 19px "Playfair Display",serif; }
+		.number { width:48px; height:48px; display:grid; place-items:center; border:1px solid var(--line); border-radius:50%; color:var(--red); font:600 19px "Newsreader",serif; }
 		.entry-label { margin:0 0 10px; }
 		.entry h2 { margin:0 0 14px; }
 		.entry p { margin:0 0 13px; }
@@ -91,13 +104,13 @@
 		<nav aria-label="Navegación principal"><a href="#bitacora">La bitácora</a><a class="license" href="licencia/LICENSE.txt">Licencia</a></nav>
 	</header>
 	<section class="cover" id="inicio" aria-labelledby="page-title">
-		<img src="https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=2000&q=85" alt="Escenario teatral iluminado, imagen de archivo" />
+		<img src="FOTOS/1.%20imagen%20encuentro%20de%20jovenes.jpg" alt="Fotografía de la programación del III Encuentro de Jóvenes en el Centro Nacional de las Artes." />
 		<div class="cover-content animate__animated animate__fadeInUp">
 			<p class="eyebrow">Bitácora personal · Centro Nacional de las Artes</p>
 			<h1 id="page-title">III Encuentro<br />de Jóvenes</h1>
 			<p>Cinco días de arte, preguntas y encuentros.</p>
 		</div>
-		<span class="caption">Imagen de archivo; no corresponde necesariamente al Encuentro.</span>
+		<span class="caption">Imagen del III Encuentro de Jóvenes en el Centro Nacional de las Artes.</span>
 	</section>
 	<section class="intro shell" aria-labelledby="intro-title">
 		<div>
