@@ -59,11 +59,12 @@
 		.entry.is-active h2 { animation-delay:.1s; }
 		.entry.is-active p { animation-delay:.16s; }
 		.entry.is-active .tag { animation-delay:.24s; }
-		.entry.is-active h2 { animation:heading-enter-next .65s cubic-bezier(.2,.7,.2,1) .08s both; }
-		.entry.is-active.from-previous h2 { animation-name:heading-enter-previous; }
+		.entry.is-active h2 { animation:heading-enter-next .65s cubic-bezier(.2,.7,.2,1) .08s both, day-title-color 1.6s ease-in-out .1s both; }
+		.entry.is-active.from-previous h2 { animation-name:heading-enter-previous, day-title-color; }
 		@keyframes day-enter { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 		@keyframes heading-enter-next { from { opacity:0; transform:translateX(26px); filter:blur(3px); } to { opacity:1; transform:translateX(0); filter:blur(0); } }
 		@keyframes heading-enter-previous { from { opacity:0; transform:translateX(-26px); filter:blur(3px); } to { opacity:1; transform:translateX(0); filter:blur(0); } }
+		@keyframes day-title-color { 0%,100% { color:var(--ink); text-shadow:0 0 0 #b94d3900; } 45% { color:var(--red); text-shadow:0 0 12px #b94d3940; } }
 		.pager { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:4px 0 0 72px; }
 		.pager button { min-height:40px; padding:0 13px; border:1px solid var(--line); background:#fffefa; color:var(--green); font-size:12px; font-weight:700; cursor:pointer; }
 		.pager button:hover:not(:disabled) { border-color:var(--green); }
