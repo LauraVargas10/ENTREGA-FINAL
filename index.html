@@ -7,9 +7,13 @@
 	<title>Bitácora | III Encuentro de Jóvenes</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 	<style>
+		@font-face { font-family:"Bodoni FLF"; src:url("fonts/BodoniFLF-Roman.ttf") format("truetype"); font-style:normal; font-weight:400; font-display:swap; }
+		@font-face { font-family:"Bodoni FLF"; src:url("fonts/BodoniFLF-Italic.ttf") format("truetype"); font-style:italic; font-weight:400; font-display:swap; }
+		@font-face { font-family:"Bodoni FLF"; src:url("fonts/BodoniFLF-Bold.ttf") format("truetype"); font-style:normal; font-weight:700; font-display:swap; }
+		@font-face { font-family:"Bodoni FLF"; src:url("fonts/BodoniFLF-BoldItalic.ttf") format("truetype"); font-style:italic; font-weight:700; font-display:swap; }
 		:root { --ink:#1b2926; --muted:#64716c; --paper:#f5f4ee; --green:#245c49; --red:#b94d39; --yellow:#e8c86b; --line:#deddd3; font-family:"Karla",sans-serif; color:var(--ink); background:var(--paper); scroll-behavior:smooth; }
 		* { box-sizing:border-box; }
 		body { margin:0; min-width:320px; }
@@ -17,7 +21,7 @@
 		.shell { width:min(1080px,calc(100% - 44px)); margin:0 auto; }
 		.topbar { height:68px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
 		.brand { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:700; text-decoration:none; }
-		.brand-mark { width:32px; height:32px; display:grid; place-items:center; background:var(--red); color:#fff; font:700 13px "Newsreader",serif; }
+		.brand-mark { width:32px; height:32px; display:grid; place-items:center; background:var(--red); color:#fff; font:700 13px "Bodoni FLF",Georgia,serif; }
 		nav { display:flex; gap:22px; font-size:12px; }
 		nav a { text-decoration:none; } nav a:hover { color:var(--red); }
 		.license { border-bottom:1px solid var(--red); padding-bottom:3px; }
@@ -27,7 +31,7 @@
 		.cover-content { position:relative; z-index:1; width:min(1080px,calc(100% - 44px)); margin:0 auto; padding:45px 0; }
 		.eyebrow,.entry-label { color:var(--red); font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
 		.cover .eyebrow { color:var(--yellow); }
-		h1 { margin:10px 0; font:600 clamp(40px,6vw,66px)/1.04 "Newsreader",Georgia,serif; }
+		h1 { margin:10px 0; font:700 clamp(40px,6vw,66px)/1.04 "Bodoni FLF",Georgia,serif; }
 		#page-title { animation:title-shift 6s ease-in-out infinite; }
 		@keyframes title-shift { 0%,100% { color:#fff6e2; text-shadow:0 0 0 #e8c86b00; } 50% { color:#f0ca62; text-shadow:0 0 18px #e8c86b7a; } }
 		@keyframes text-reveal { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
@@ -35,13 +39,13 @@
 		.caption { position:absolute; z-index:2; right:14px; bottom:10px; color:white; font-size:9px; }
 		.intro { display:grid; grid-template-columns:1fr 250px; gap:50px; padding:45px 0; border-bottom:1px solid var(--line); }
 		.intro .eyebrow { margin:0 0 10px; }
-		h2 { font:500 29px/1.2 "Newsreader",Georgia,serif; }
+		h2 { font:700 29px/1.2 "Bodoni FLF",Georgia,serif; }
 		.intro h2 { margin:0 0 15px; }
 		.intro p:not(.eyebrow),.entry p { color:#43504b; font-size:14px; line-height:1.85; }
 		.intro p:not(.eyebrow) { margin:0 0 12px; }
 		.intro > div { animation:text-reveal .65s .08s both; }
 		.aside { align-self:center; padding-left:19px; border-left:2px solid var(--yellow); color:var(--muted); font-size:12px; line-height:1.7; }
-		.aside strong { display:block; margin-bottom:7px; color:var(--ink); font:600 19px "Newsreader",Georgia,serif; }
+		.aside strong { display:block; margin-bottom:7px; color:var(--ink); font:700 19px "Bodoni FLF",Georgia,serif; }
 		.intro > .aside { animation:text-reveal .65s .2s both; }
 		.journal { display:grid; grid-template-columns:175px minmax(0,1fr); gap:48px; padding:48px 0 68px; }
 		.day-nav { display:block; position:sticky; top:20px; align-self:start; }
@@ -73,7 +77,7 @@
 		.pager button:focus-visible, .day-nav a:focus-visible { outline:3px solid #78ac91; outline-offset:3px; }
 		.entry { display:grid; grid-template-columns:54px minmax(0,1fr); gap:18px; padding-bottom:36px; margin-bottom:36px; border-bottom:1px solid var(--line); scroll-margin-top:20px; }
 		.entry:last-child { border:0; }
-		.number { width:48px; height:48px; display:grid; place-items:center; border:1px solid var(--line); border-radius:50%; color:var(--red); font:600 19px "Newsreader",serif; }
+		.number { width:48px; height:48px; display:grid; place-items:center; border:1px solid var(--line); border-radius:50%; color:var(--red); font:700 19px "Bodoni FLF",Georgia,serif; }
 		.entry-label { margin:0 0 10px; }
 		.entry h2 { margin:0 0 14px; }
 		.entry p { margin:0 0 13px; }
@@ -111,7 +115,7 @@
 	<section class="cover" id="inicio" aria-labelledby="page-title">
 		<img src="FOTOS/1.%20imagen%20encuentro%20de%20jovenes.jpg" alt="Fotografía de la programación del III Encuentro de Jóvenes en el Centro Nacional de las Artes." />
 		<div class="cover-content animate__animated animate__fadeInUp">
-			<p class="eyebrow">Bitácora personal · Centro Nacional de las Artes</p>
+			<p class="eyebrow">Bitácora personal del Centro Nacional de las Artes</p>
 			<h1 id="page-title">III Encuentro<br />de Jóvenes</h1>
 			<p>Cinco días de arte, preguntas y encuentros.</p>
 		</div>
@@ -138,49 +142,49 @@
 		<div class="entries">
 			<article class="entry" id="dia-1">
 				<div class="number" aria-hidden="true">01</div><div>
-					<p class="entry-label">Día uno · Llegar y mirar</p><h2>¿Quiénes pueden habitar estos espacios?</h2>
+					<p class="entry-label">Día uno: Llegar y mirar</p><h2>¿Quiénes pueden habitar estos espacios?</h2>
 					<p>Fue mucho corre corre, pero conocí procesos artísticos en un colegio público de Bogotá. Estaban impresionados con las instalaciones del Delia, igual que yo cuando me enseñaron dónde sería nuestra sede de trabajo.</p>
 					<p>Pensé mucho en mi yo chiquita, cuando iba a la Casa de la Cultura de mi municipio.</p>
 					<p class="thought">Me quedé pensando en lo público y en cómo hacer que ser artista en Colombia no sea un privilegio de unos pocos. Que contar con espacios dignos para crear, ensayar y trabajar no dependa de las oportunidades que cada quien tenga. ¿Cómo podemos, desde la política pública, abrir más espacios para encontrarnos, compartir y hacer arte? ¿Cómo lograr que habitar escenarios tan importantes para la cultura colombiana deje de ser un sueño y se convierta en una posibilidad real para más artistas?</p>
 					<p>Luego tuvimos la inauguración de artes gráficas. Fue complejo porque desde el Ministerio de Cultura se nos pidió bajar una de las obras de la exposición. ¿Qué es la cultura si no podemos construir relatos que nos incomoden e interpelen?</p>
 					<p>Después vimos una obra para la franja infantil. Fue hermosa: transcurría en un hospital psiquiátrico y uno de los personajes se llamaba Enriqueta. Olvidaba el nombre de su esposa y luego la dormían.</p>
 					<p>Me acordé de mi papá. Se llamaba Enrique y, después de varios accidentes cerebrovasculares, perdió la memoria; a veces no recordaba el nombre de mi mamá. Para mí fue una señal del más allá de que estaba haciendo las cosas bien. Ojalá haya más mensajes del más allá.</p>
-					<span class="tag">Arte público · Memoria · Cuidado</span>
+					<span class="tag">Arte público, memoria y cuidado</span>
 				</div>
 			</article>
 			<article class="entry" id="dia-2">
 				<div class="number" aria-hidden="true">02</div><div>
-					<p class="entry-label">Día dos · El público también se construye</p><h2>Encontrarnos para hacer comunidad</h2>
+					<p class="entry-label">Día dos: El público también se construye</p><h2>Encontrarnos para hacer comunidad</h2>
 					<p>Este día fue peculiar. Llegué en la tarde por el trabajo, pero fue hermoso ver cómo un colectivo de danza de Bucaramanga se presentó en el Delia. Hacen danza contemporánea e improvisación de contacto, un lenguaje que vemos en corporal.</p>
 					<p>No hubo mucho público, y eso me dejó pensando en la divulgación de los encuentros culturales. En Bogotá necesitamos crear comunidad y escuela de público para las artes: que estos espacios se conozcan, se habiten y se sientan propios.</p>
-					<span class="tag">Danza · Público · Comunidad</span>
+					<span class="tag">Danza, público y comunidad</span>
 				</div>
 			</article>
 			<article class="entry" id="dia-3">
 				<div class="number" aria-hidden="true">03</div><div>
-					<p class="entry-label">Día tres · Escuchar otros territorios</p><h2>El país también cabe en una conversación</h2>
+					<p class="entry-label">Día tres: Escuchar otros territorios</p><h2>El país también cabe en una conversación</h2>
 					<p>Este día fue hermoso. Tuvimos un encuentro entre artistas, asesores y consejeres del Encuentro. Fue un espacio muy bonito porque nos permitió conocer realidades culturales de nuestro país más allá de Bogotá y escuchar de primera mano los desafíos de quienes hacen arte en otros territorios.</p>
 					<p>Nos hablaron de Pasto, donde no existe una oferta de formación profesional en artes escénicas, y de Tumaco, donde hay numerosas sabedoras y sabedores cuyos conocimientos y trayectorias no cuentan con una certificación formal. Eso les impide acceder a convocatorias, pues no tienen cómo acreditar sus saberes y experiencia.</p>
 					<p>Más tarde vimos la obra de Pasto en el Teatro Colón. Los artistas estaban muy emocionados de presentarse en un escenario tan importante y de haber llegado hasta allí, a pesar de las barreras que enfrentan quienes hacen arte en Nariño. Fue muy bonito ver lo que significaba para ellos ocupar ese espacio.</p>
-					<span class="tag">Pasto · Tumaco · Nariño</span>
+					<span class="tag">Pasto, Tumaco y Nariño</span>
 				</div>
 			</article>
 			<article class="entry" id="dia-4">
 				<div class="number" aria-hidden="true">04</div><div>
-					<p class="entry-label">Día cuatro · Sonidos que nos acercan</p><h2>La radio también es un lugar de encuentro</h2>
+					<p class="entry-label">Día cuatro: Sonidos que nos acercan</p><h2>La radio también es un lugar de encuentro</h2>
 					<p>Tuvimos un día de radio comunitaria con Ondanza, un colectivo que hace radio desde los sonidos del sur.</p>
 					<p>En la noche estuvo Chureo Callejero en el Teatro Colón. Fue muy chévere tenerlos ese día.</p>
-					<span class="tag">Ondanza · Radio comunitaria · Chureo Callejero</span>
+					<span class="tag">Ondanza, radio comunitaria y Chureo Callejero</span>
 				</div>
 			</article>
 			<article class="entry" id="dia-5">
 				<div class="number" aria-hidden="true">05</div><div>
-					<p class="entry-label">Día cinco · Cerrar escuchando</p><h2>El grito que encontró palabras</h2>
+					<p class="entry-label">Día cinco: Cerrar escuchando</p><h2>El grito que encontró palabras</h2>
 					<p>Ya estábamos llegando al cierre del Encuentro, pero me enfermé; creo que fue por el estrés. Aun así, cerramos con danza y narración oral.</p>
 					<p>Una de las obras fue <em>El grito de la Mona</em>. Nos hizo pensar en cómo la educación puede transformar vidas y en que, a veces, uno de los actos más transformadores de enseñar es simplemente escuchar con atención las historias de los estudiantes.</p>
 					<p>Nos contaron la historia de un chico que pasaba mucho tiempo solo porque sus papás trabajaban todo el día. Casi nunca hacía las tareas que le dejaba su profesor, hasta que un día decidió escribirle una carta a la niña que le gustaba, la Mona. Por primera vez dejó de gritar y encontró en las palabras una forma de expresar lo que sentía.</p>
 					<p class="thought">Y todo porque un profesor, de esos locos soñadores que creen que la educación puede cambiar el mundo, se tomó el tiempo de escucharlo y descubrió que, detrás de sus gritos, había una historia que merecía ser contada.</p>
-					<span class="tag">Educación · Escucha · Narración oral</span>
+					<span class="tag">Educación, escucha y narración oral</span>
 				</div>
 			</article>
 		</div>
