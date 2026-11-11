@@ -416,22 +416,28 @@ h2 {
 }
 
 /* GIF y audio del primer dia */
-.day-one-media {
+.entry-media {
 	display: grid;
 	gap: 12px;
 	width: min(100%, 498px);
 	margin: 22px 0;
 }
 
-.day-one-media img {
+.entry-media img {
 	display: block;
 	width: 100%;
 	height: auto;
 }
 
-.day-one-media audio {
+.entry-media audio {
 	display: block;
 	width: 100%;
+}
+
+.entry-media-title {
+	margin: 0;
+	color: var(--ink);
+	font: 700 20px "Bodoni FLF", Georgia, serif;
 }
 
 /* Pie de pagina */

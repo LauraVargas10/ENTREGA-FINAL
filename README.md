@@ -7,3 +7,6 @@ Me ayudé de la IA para lograr compaginar mi html con el html de la librería.
 
 A 10 de noviembre me faltan: gifts, imágenes, vídeos y música para que la narrativa sea mejor contada. 
 También preguntaré en la clase del 11 de noviembre cómo incorporar la API porque no lo entendí muy bien. 
+
+Hoy, 11 de noviembre, nos comentaron que ya no será necesario el API, por ello, me concentré en ponerle audio y actualizar los css y también poner un gif. 
+
