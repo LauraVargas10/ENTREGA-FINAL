@@ -43,6 +43,16 @@
 		.day-nav p { color:var(--muted); font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
 		.day-nav a { display:block; padding:9px 0; border-top:1px solid var(--line); font-size:11px; text-decoration:none; }
 		.day-nav span { display:inline-block; width:34px; color:var(--red); font-weight:700; }
+		.day-nav a[aria-current="page"] { color:var(--red); font-weight:700; }
+		.entry:not(.is-active) { display:none; }
+		.entry.is-active { display:grid; animation:day-enter .35s ease both; }
+		@keyframes day-enter { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+		.pager { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:4px 0 0 72px; }
+		.pager button { min-height:40px; padding:0 13px; border:1px solid var(--line); background:#fffefa; color:var(--green); font-size:12px; font-weight:700; cursor:pointer; }
+		.pager button:hover:not(:disabled) { border-color:var(--green); }
+		.pager button:disabled { cursor:not-allowed; opacity:.4; }
+		.pager-current { color:var(--muted); font-size:11px; }
+		.pager button:focus-visible, .day-nav a:focus-visible { outline:3px solid #78ac91; outline-offset:3px; }
 		.entry { display:grid; grid-template-columns:54px minmax(0,1fr); gap:18px; padding-bottom:36px; margin-bottom:36px; border-bottom:1px solid var(--line); scroll-margin-top:20px; }
 		.entry:last-child { border:0; }
 		.number { width:48px; height:48px; display:grid; place-items:center; border:1px solid var(--line); border-radius:50%; color:var(--red); font:600 19px "Playfair Display",serif; }
@@ -68,6 +78,8 @@
 			.entry { grid-template-columns:40px minmax(0,1fr); gap:12px; }
 			.number { width:38px; height:38px; font-size:15px; }
 			.entry h2 { font-size:25px; } .entry p,.intro p:not(.eyebrow) { font-size:13px; }
+			.pager { margin-left:0; }
+			.pager button { padding:0 9px; font-size:11px; }
 			footer .shell { flex-direction:column; }
 		}
 		@media(prefers-reduced-motion:reduce) { *,*:before,*:after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; } }
@@ -154,7 +166,58 @@
 				</div>
 			</article>
 		</div>
+		<div class="pager" aria-label="Cambiar de día">
+			<button id="previous-day" type="button">← Día anterior</button>
+			<span class="pager-current" id="day-count" aria-live="polite"></span>
+			<button id="next-day" type="button">Día siguiente →</button>
+		</div>
 	</main>
 	<footer><div class="shell"><p>Bitácora del III Encuentro de Jóvenes. Animaciones con Animate.css, de Daniel Eden y colaboradores. Se incluye el aviso de copyright y la licencia para consulta.</p><a href="licencia/LICENSE.txt">Leer la licencia</a></div></footer>
+	<script>
+		const entries = Array.from(document.querySelectorAll(".entry"));
+		const dayLinks = Array.from(document.querySelectorAll(".day-nav a"));
+		const previousButton = document.querySelector("#previous-day");
+		const nextButton = document.querySelector("#next-day");
+		const dayCount = document.querySelector("#day-count");
+		let currentDay = 0;
+
+		function showDay(index, updateUrl = false) {
+			currentDay = Math.max(0, Math.min(index, entries.length - 1));
+			entries.forEach((entry, entryIndex) => {
+				entry.classList.toggle("is-active", entryIndex === currentDay);
+				if (entryIndex === currentDay) entry.setAttribute("aria-current", "true");
+				else entry.removeAttribute("aria-current");
+			});
+			dayLinks.forEach((link, linkIndex) => {
+				if (linkIndex === currentDay) link.setAttribute("aria-current", "page");
+				else link.removeAttribute("aria-current");
+			});
+			previousButton.disabled = currentDay === 0;
+			nextButton.disabled = currentDay === entries.length - 1;
+			dayCount.textContent = `Día ${currentDay + 1} de ${entries.length}`;
+			if (updateUrl) history.pushState(null, "", `#${entries[currentDay].id}`);
+		}
+
+		dayLinks.forEach((link, index) => link.addEventListener("click", (event) => {
+			event.preventDefault();
+			showDay(index, true);
+			document.querySelector("#bitacora").scrollIntoView({ behavior: "smooth", block: "start" });
+		}));
+		previousButton.addEventListener("click", () => {
+			showDay(currentDay - 1, true);
+			document.querySelector("#bitacora").scrollIntoView({ behavior: "smooth", block: "start" });
+		});
+		nextButton.addEventListener("click", () => {
+			showDay(currentDay + 1, true);
+			document.querySelector("#bitacora").scrollIntoView({ behavior: "smooth", block: "start" });
+		});
+		window.addEventListener("popstate", () => {
+			const index = entries.findIndex((entry) => `#${entry.id}` === window.location.hash);
+			showDay(index < 0 ? 0 : index);
+		});
+
+		const initialDay = entries.findIndex((entry) => `#${entry.id}` === window.location.hash);
+		showDay(initialDay < 0 ? 0 : initialDay);
+	</script>
 </body>
 </html>
