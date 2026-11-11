@@ -9,103 +9,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-	<style>
-		@font-face { font-family:"Bodoni FLF"; src:url("fonts/BodoniFLF-Roman.ttf") format("truetype"); font-style:normal; font-weight:400; font-display:swap; }
-		@font-face { font-family:"Bodoni FLF"; src:url("fonts/BodoniFLF-Italic.ttf") format("truetype"); font-style:italic; font-weight:400; font-display:swap; }
-		@font-face { font-family:"Bodoni FLF"; src:url("fonts/BodoniFLF-Bold.ttf") format("truetype"); font-style:normal; font-weight:700; font-display:swap; }
-		@font-face { font-family:"Bodoni FLF"; src:url("fonts/BodoniFLF-BoldItalic.ttf") format("truetype"); font-style:italic; font-weight:700; font-display:swap; }
-		:root { --ink:#1b2926; --muted:#64716c; --paper:#f5f4ee; --green:#245c49; --red:#b94d39; --yellow:#e8c86b; --line:#deddd3; font-family:"Karla",sans-serif; color:var(--ink); background:var(--paper); scroll-behavior:smooth; }
-		* { box-sizing:border-box; }
-		body { margin:0; min-width:320px; }
-		a { color:inherit; }
-		.shell { width:min(1080px,calc(100% - 44px)); margin:0 auto; }
-		.topbar { height:68px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
-		.brand { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:700; text-decoration:none; }
-		.brand-mark { width:32px; height:32px; display:grid; place-items:center; background:var(--red); color:#fff; font:700 13px "Bodoni FLF",Georgia,serif; }
-		nav { display:flex; gap:22px; font-size:12px; }
-		nav a { text-decoration:none; } nav a:hover { color:var(--red); }
-		.license { border-bottom:1px solid var(--red); padding-bottom:3px; }
-		.cover { min-height:365px; position:relative; display:flex; align-items:end; overflow:hidden; background:#24342d; color:#fff; }
-		.cover img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 55%; }
-		.cover:after { position:absolute; inset:0; content:""; background:linear-gradient(90deg,#16241fe8,#16241f75 55%,#16241f20); }
-		.cover-content { position:relative; z-index:1; width:min(1080px,calc(100% - 44px)); margin:0 auto; padding:45px 0; }
-		.eyebrow,.entry-label { color:var(--red); font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
-		.cover .eyebrow { color:var(--yellow); }
-		h1 { margin:10px 0; font:700 clamp(40px,6vw,66px)/1.04 "Bodoni FLF",Georgia,serif; }
-		#page-title { animation:title-shift 6s ease-in-out infinite; }
-		@keyframes title-shift { 0%,100% { color:#fff6e2; text-shadow:0 0 0 #e8c86b00; } 50% { color:#f0ca62; text-shadow:0 0 18px #e8c86b7a; } }
-		@keyframes text-reveal { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-		.cover p:last-child { margin:12px 0 0; color:#f2f1e9; font-size:14px; }
-		.caption { position:absolute; z-index:2; right:14px; bottom:10px; color:white; font-size:9px; }
-		.intro { display:grid; grid-template-columns:1fr 250px; gap:50px; padding:45px 0; border-bottom:1px solid var(--line); }
-		.intro .eyebrow { margin:0 0 10px; }
-		h2 { font:700 29px/1.2 "Bodoni FLF",Georgia,serif; }
-		.intro h2 { margin:0 0 15px; }
-		.intro p:not(.eyebrow),.entry p { color:#43504b; font-size:14px; line-height:1.85; }
-		.intro p:not(.eyebrow) { margin:0 0 12px; }
-		.intro > div { animation:text-reveal .65s .08s both; }
-		.aside { align-self:center; padding-left:19px; border-left:2px solid var(--yellow); color:var(--muted); font-size:12px; line-height:1.7; }
-		.aside strong { display:block; margin-bottom:7px; color:var(--ink); font:700 19px "Bodoni FLF",Georgia,serif; }
-		.intro > .aside { animation:text-reveal .65s .2s both; }
-		.journal { display:grid; grid-template-columns:175px minmax(0,1fr); gap:48px; padding:48px 0 68px; }
-		.day-nav { display:block; position:sticky; top:20px; align-self:start; }
-		.day-nav p { color:var(--muted); font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
-		.day-nav a { display:block; padding:9px 0; border-top:1px solid var(--line); font-size:11px; text-decoration:none; }
-		.day-nav span { display:inline-block; width:34px; color:var(--red); font-weight:700; }
-		.day-nav a[aria-current="page"] { color:var(--red); font-weight:700; }
-		.entry:not(.is-active) { display:none; }
-		.entry.is-active { display:grid; animation:day-enter .35s ease both; }
-		.entry.is-active .entry-label,
-		.entry.is-active h2,
-		.entry.is-active p,
-		.entry.is-active .tag { animation:text-reveal .55s both; }
-		.entry.is-active .entry-label { animation-delay:.04s; }
-		.entry.is-active h2 { animation-delay:.1s; }
-		.entry.is-active p { animation-delay:.16s; }
-		.entry.is-active .tag { animation-delay:.24s; }
-		.entry.is-active h2 { animation:heading-enter-next .65s cubic-bezier(.2,.7,.2,1) .08s both, day-title-color 1.6s ease-in-out .1s both; }
-		.entry.is-active.from-previous h2 { animation-name:heading-enter-previous, day-title-color; }
-		@keyframes day-enter { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
-		@keyframes heading-enter-next { from { opacity:0; transform:translateX(26px); filter:blur(3px); } to { opacity:1; transform:translateX(0); filter:blur(0); } }
-		@keyframes heading-enter-previous { from { opacity:0; transform:translateX(-26px); filter:blur(3px); } to { opacity:1; transform:translateX(0); filter:blur(0); } }
-		@keyframes day-title-color { 0%,100% { color:var(--ink); text-shadow:0 0 0 #b94d3900; } 45% { color:var(--red); text-shadow:0 0 12px #b94d3940; } }
-		.pager { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:4px 0 0 72px; }
-		.pager button { min-height:40px; padding:0 13px; border:1px solid var(--line); background:#fffefa; color:var(--green); font-size:12px; font-weight:700; cursor:pointer; }
-		.pager button:hover:not(:disabled) { border-color:var(--green); }
-		.pager button:disabled { cursor:not-allowed; opacity:.4; }
-		.pager-current { color:var(--muted); font-size:11px; }
-		.pager button:focus-visible, .day-nav a:focus-visible { outline:3px solid #78ac91; outline-offset:3px; }
-		.entry { display:grid; grid-template-columns:54px minmax(0,1fr); gap:18px; padding-bottom:36px; margin-bottom:36px; border-bottom:1px solid var(--line); scroll-margin-top:20px; }
-		.entry:last-child { border:0; }
-		.number { width:48px; height:48px; display:grid; place-items:center; border:1px solid var(--line); border-radius:50%; color:var(--red); font:700 19px "Bodoni FLF",Georgia,serif; }
-		.entry-label { margin:0 0 10px; }
-		.entry h2 { margin:0 0 14px; }
-		.entry p { margin:0 0 13px; }
-		.entry .thought { padding-left:15px; border-left:2px solid var(--yellow); color:#34443d; }
-		.tag { display:inline-block; margin-top:5px; padding:6px 9px; background:#e9eee4; color:var(--green); font-size:10px; font-weight:700; }
-		footer { padding:20px 0 26px; border-top:1px solid var(--line); color:var(--muted); font-size:11px; line-height:1.7; }
-		footer .shell { display:flex; justify-content:space-between; gap:18px; }
-		footer p { max-width:750px; margin:0; }
-		footer a { color:var(--green); font-weight:700; }
-		@media(max-width:700px) {
-			.shell,.cover-content { width:calc(100% - 30px); }
-			.topbar { height:60px; } nav { gap:14px; } nav a:first-child { display:none; }
-			.cover { min-height:330px; } .cover:after { background:linear-gradient(0deg,#16241fdc,#16241f22); }
-			.intro { grid-template-columns:1fr; gap:18px; padding:34px 0; }
-			.journal { grid-template-columns:1fr; gap:18px; padding:34px 0 48px; }
-			.day-nav { position:static; display:flex; flex-wrap:wrap; gap:6px; }
-			.day-nav p { width:100%; margin-bottom:4px; }
-			.day-nav a { padding:7px 9px; border:1px solid var(--line); background:#fffefa; }
-			.day-nav span { width:auto; margin-right:4px; }
-			.entry { grid-template-columns:40px minmax(0,1fr); gap:12px; }
-			.number { width:38px; height:38px; font-size:15px; }
-			.entry h2 { font-size:25px; } .entry p,.intro p:not(.eyebrow) { font-size:13px; }
-			.pager { margin-left:0; }
-			.pager button { padding:0 9px; font-size:11px; }
-			footer .shell { flex-direction:column; }
-		}
-		@media(prefers-reduced-motion:reduce) { *,*:before,*:after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; } }
-	</style>
+	<link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
 	<header class="topbar shell">
@@ -149,6 +53,13 @@
 					<p>Luego tuvimos la inauguración de artes gráficas. Fue complejo porque desde el Ministerio de Cultura se nos pidió bajar una de las obras de la exposición. ¿Qué es la cultura si no podemos construir relatos que nos incomoden e interpelen?</p>
 					<p>Después vimos una obra para la franja infantil. Fue hermosa: transcurría en un hospital psiquiátrico y uno de los personajes se llamaba Enriqueta. Olvidaba el nombre de su esposa y luego la dormían.</p>
 					<p>Me acordé de mi papá. Se llamaba Enrique y, después de varios accidentes cerebrovasculares, perdió la memoria; a veces no recordaba el nombre de mi mamá. Para mí fue una señal del más allá de que estaba haciendo las cosas bien. Ojalá haya más mensajes del más allá.</p>
+					<div class="day-one-media">
+						<img src="FOTOS/Es%20hoy%20es%20hoy%20.gif" alt="GIF de Stuart Little con el texto Es hoy" loading="lazy" />
+						<audio controls preload="metadata" aria-label="Sonido del primer día">
+							<source src="FOTOS/Stuart%20Little%20-%20Es%20hoy,%20es%20hoy.mp3" type="audio/mpeg" />
+							Tu navegador no admite la reproducción de audio.
+						</audio>
+					</div>
 					<span class="tag">Arte público, memoria y cuidado</span>
 				</div>
 			</article>
