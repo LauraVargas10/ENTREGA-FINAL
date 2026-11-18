@@ -25,3 +25,5 @@ Posteriormente, le añadí animaciones a los títulos
 Añadí zoom y movimiento a los títulos. 
 Y luego zoom y movimiento a las imágenes y a los vídeos.
 La Imagen del III Encuentro de Jóvenes en el Centro Nacional de las Artes le realicé movimiento y animación. 
+Luego animé "Cinco días de arte, preguntas y encuentros".
+Y por último, le puse un fondo a "De los espacios públicos para crear a las historias que nos transforman cuando alguien se toma el tiempo de escuchar".

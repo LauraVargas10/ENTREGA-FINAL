@@ -239,11 +239,15 @@ h2 {
 
 .aside {
 	align-self: center;
-	padding-left: 19px;
-	border-left: 2px solid var(--yellow);
-	color: var(--muted);
+	padding: 24px 22px;
+	border: 1px solid #d5af45;
+	border-left: 6px solid var(--yellow);
+	border-radius: 4px;
+	background: linear-gradient(135deg, #fff2bd, #e8c86b);
+	color: #4e4938;
 	font-size: 12px;
 	line-height: 1.7;
+	box-shadow: 0 10px 24px rgba(27, 41, 38, .12);
 }
 
 .aside strong {
