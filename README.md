@@ -16,4 +16,4 @@ Hoy, 11 de noviembre, nos comentaron que ya no será necesario el API, por ello,
 Posteriormente, he agregado vídeos y música para que el lector pueda ver y sentirse inmerso en lo que fue el Encuentro. 
 
 ## 17 de noviembre:
-
+Subí los vídeos de los días 3, 4 y 5. 
