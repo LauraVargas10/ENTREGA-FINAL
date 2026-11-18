@@ -17,3 +17,11 @@ Posteriormente, he agregado vídeos y música para que el lector pueda ver y sen
 
 ## 17 de noviembre:
 Subí los vídeos de los días 3, 4 y 5. 
+
+## 18 de noviembre: 
+Añadí animaciones a los vídeos y a las imágenes.
+Luego le añadí colores a cada vídeo e imágenes
+Posteriormente, le añadí animaciones a los títulos
+Añadí zoom y movimiento a los títulos. 
+Y luego zoom y movimiento a las imágenes y a los vídeos.
+La Imagen del III Encuentro de Jóvenes en el Centro Nacional de las Artes le realicé movimiento y animación. 
